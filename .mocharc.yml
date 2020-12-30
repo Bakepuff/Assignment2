@@ -1,0 +1,6 @@
+file:
+    - '_test_/movie.spec.js'
+    - '_test_/user.spec.js'
+require: '@babel/register'
+exit: true
+timeout: 4000

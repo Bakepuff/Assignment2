@@ -4,16 +4,40 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node index.js"
+    "build": "npm-run-all clean compile:all",
+    "clean": "rimraf ./build && mkdir build",
+    "compile:moviemodels": "babel ./api/movies --out-dir build/api/movies",
+    "compile:usermodels": "babel ./api/users --out-dir build/api/users",
+    "compile:genremodels": "babel ./api/genres --out-dir build/api/genres",
+    "compile:tmdb-api": "babel ./api/tmdb-api.js --out-dir build/api/",
+    "compile:models": "npm-run-all compile:moviemodels compile:usermodels compile:genremodels compile:tmdb-api",
+    "compile:seed": "babel ./seedData --out-dir build/seedData",
+    "compile:auth": "babel ./authenticate --out-dir build/authenticate",
+    "compile:routes": "babel ./routes --out-dir build/routes ",
+    "compile:app": "babel index.js --out-dir build/",
+    "compile:db": "babel db.js --out-dir build/",
+    "compile:all": "npm-run-all compile:models compile:seed compile:app compile:db compile:auth",
+    "postinstall": "rimraf ./build && npm run compile:all",
+    "start": "nodemon --exec babel-node server.js",
+    "test": "jest --forceExit --maxWorkers=1"
   },
   "author": "TanShi",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
     "babel-preset-env": "^1.7.0",
     "eslint": "^7.16.0",
-    "nodemon": "^2.0.6"
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.6",
+    "npm-run-all": "^4.1.5",
+    "regenerator-runtime": "^0.13.7",
+    "supertest": "^6.0.1"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -25,5 +49,8 @@
     "node-fetch": "^2.6.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
