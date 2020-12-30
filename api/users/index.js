@@ -36,7 +36,7 @@ router.post('/', async (req, res, next) => {
           // return the information including token as JSON
           res.status(200).json({
             success: true,
-            token: 'BEARER ' + token,
+            token: token,
           });
         } else {
           res.status(401).json({
