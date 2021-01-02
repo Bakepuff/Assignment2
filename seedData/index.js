@@ -21,7 +21,7 @@ export async function loadUsers() {
         await users.forEach(user => userModel.create(user));
         console.info(`${users.length} users were successfully stored.`);
       } catch (err) {
-        console.error(`failed to Load user Data: ${err}`);
+        
       }
     }
     // deletes all movies documents in collection and inserts test data
@@ -33,7 +33,7 @@ export async function loadUsers() {
       await movieModel.collection.insertMany(movies);
       console.info(`${movies.length} Movies were successfully stored.`);
     } catch (err) {
-      console.error(`failed to Load movie Data: ${err}`);
+      
     }
   } 
 
