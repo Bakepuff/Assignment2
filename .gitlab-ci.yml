@@ -3,7 +3,7 @@ image: node:latest
 
 variables:
    npm_config_cache: "$CI_PROJECT_DIR/.npm"
-   NODE_ENV: 'development'
+   NODE_ENV: 'test'
 
 cache:
    key:
