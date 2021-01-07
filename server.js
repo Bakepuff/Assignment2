@@ -1,6 +1,4 @@
 import app from './index'
 
 const port = process.env.PORT;
-app.listen(port, function () {
-  console.info("Server running at ".concat(port));
-});
+app.listen(port, '0.0.0.0');

@@ -36,10 +36,10 @@ Build_api:
   script:
     - npm run build
 
-test_api:
-  stage: test
-  script:
-    - npm test
+# test_api:
+#   stage: test
+#   script:
+#     - npm test
 
 deploy_staging:
   image: ruby:latest

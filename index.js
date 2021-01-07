@@ -30,7 +30,6 @@ const errHandler = (err, req, res, next) => {
 };
 //configure body-parser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
 
 app.use(session({
   secret: 'ilikecake',
