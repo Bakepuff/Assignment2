@@ -33,7 +33,7 @@ export async function loadUsers() {
       await movieModel.collection.insertMany(movies);
       console.info(`${movies.length} Movies were successfully stored.`);
     } catch (err) {
-      
+      console.error(`failed to Load movie Data: ${err}`);
     }
   } 
 
