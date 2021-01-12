@@ -9,8 +9,7 @@ import session from 'express-session';
 import passport from './authenticate';
 import swaggerUi from 'swagger-ui-express'
 import {loadUsers, loadMovies} from './seedData';
-
-const specs = require('./swagger.json')
+import specs from './swagger.json'
 
 
 dotenv.config();
