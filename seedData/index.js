@@ -1,8 +1,12 @@
 import userModel from '../api/users/userModel';
 import movieModel from '../api/movies/movieModel';
 import actorModel from '../api/actors/actorModel';
+import topratedModel from '../api/toprated/topratedModel';
+import upcomingModel from '../api/upcoming/upcomingModel';
 import {movies} from './movies.js';
 import {actors} from './actors.js';
+import {toprated} from './toprated.js';
+import {upcoming} from './upcoming.js';
 
 const users = [
   {
@@ -48,6 +52,30 @@ export async function loadUsers() {
       console.info(`${actors.length} actors were successfully stored.`);
     } catch (err) {
       console.error(`failed to Load actor Data: ${err}`);
+    }
+  }
+
+  export async function loadToprated() {
+    console.log('load seed toprated data');
+    console.log(toprated.length);
+    try {
+      await topratedModel.deleteMany();
+      await topratedModel.collection.insertMany(toprated);
+      console.info(`${toprated.length} toprated were successfully stored.`);
+    } catch (err) {
+      console.error(`failed to Load toprated Data: ${err}`);
+    }
+  }
+
+  export async function loadUpcoming() {
+    console.log('load seed upcoming data');
+    console.log(upcoming.length);
+    try {
+      await upcomingModel.deleteMany();
+      await upcomingModel.collection.insertMany(upcoming);
+      console.info(`${upcoming.length} upcoming were successfully stored.`);
+    } catch (err) {
+      console.error(`failed to Load upcoming Data: ${err}`);
     }
   }
 

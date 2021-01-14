@@ -6,10 +6,12 @@ import './db';
 import usersRouter from './api/users';
 import genresRouter from './api/genres';
 import actorsRouter from './api/actors';
+import topratedRouter from './api/toprated';
+import upcomingRouter from './api/upcoming';
 import session from 'express-session';
 import passport from './authenticate';
 import swaggerUi from 'swagger-ui-express'
-import {loadUsers, loadMovies, loadActors} from './seedData';
+import {loadUsers, loadMovies, loadActors,loadToprated, loadUpcoming} from './seedData';
 import specs from './swagger.json'
 
 
@@ -22,6 +24,8 @@ if (process.env.SEED_DB) {
   loadUsers();
   loadMovies();
   loadActors();
+  loadToprated();
+  loadUpcoming();
 }
 
 const errHandler = (err, req, res, next) => {
@@ -47,8 +51,11 @@ app.use(passport.initialize());
 
 app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/genres', genresRouter)
+app.use('/api/genres', genresRouter);
+app.use('/api/toprated', topratedRouter);
+app.use('/api/upcoming', upcomingRouter);
 app.use('/api/actor', actorsRouter);
+
 app.use(
   "/",
   swaggerUi.serve,
