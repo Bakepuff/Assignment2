@@ -67,6 +67,8 @@ continuous_delivery:
   script:
     - dpl --provider=heroku --app=$HEROKU_APP_NAME_PRODUCTION --api-key=$HEROKU_API_KEY
     - echo "Deployed to master server"
+  when: manual
+
 
 continuous_deployment:
   image: ruby:latest
