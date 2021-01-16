@@ -13,7 +13,7 @@ import session from 'express-session';
 import passport from './authenticate';
 import swaggerUi from 'swagger-ui-express'
 import {loadUsers, loadMovies, loadActors,loadToprated, loadUpcoming} from './seedData';
-import specs from './swagger.json'
+import specs from './swagger.json';
 
 
 dotenv.config();
