@@ -3,10 +3,10 @@ import movieModel from '../api/movies/movieModel';
 import actorModel from '../api/actors/actorModel';
 import topratedModel from '../api/toprated/topratedModel';
 import upcomingModel from '../api/upcoming/upcomingModel';
-import {movies} from './movies.js';
+import detailModel from '../api/movie/detailModel';
 import {actors} from './actors.js';
-import {toprated} from './toprated.js';
-import {upcoming} from './upcoming.js';
+import {getUpcomingMovies,getMovies, getMovie,getTopratedMovies} from '../api/tmdb-api'
+
 
 const users = [
   {
@@ -31,17 +31,8 @@ export async function loadUsers() {
       }
     }
     // deletes all movies documents in collection and inserts test data
-  export async function loadMovies() {
-    console.log('load seed data');
-    console.log(movies.length);
-    try {
-      await movieModel.deleteMany();
-      await movieModel.collection.insertMany(movies);
-      console.info(`${movies.length} Movies were successfully stored.`);
-    } catch (err) {
-      console.error(`failed to Load movie Data: ${err}`);
-    }
-  } 
+    
+  
 
   export async function loadActors() {
     console.log('load seed actor data');
@@ -55,28 +46,67 @@ export async function loadUsers() {
     }
   }
 
-  export async function loadToprated() {
-    console.log('load seed toprated data');
-    console.log(toprated.length);
-    try {
-      await topratedModel.deleteMany();
-      await topratedModel.collection.insertMany(toprated);
-      console.info(`${toprated.length} toprated were successfully stored.`);
-    } catch (err) {
-      console.error(`failed to Load toprated Data: ${err}`);
-    }
-  }
 
   export async function loadUpcoming() {
-    console.log('load seed upcoming data');
-    console.log(upcoming.length);
+    console.log('load upcomingmovies');
     try {
-      await upcomingModel.deleteMany();
-      await upcomingModel.collection.insertMany(upcoming);
-      console.info(`${upcoming.length} upcoming were successfully stored.`);
+        getUpcomingMovies().then(async mov => {
+        await upcomingModel.deleteMany();
+        await detailModel.deleteMany();
+        await upcomingModel.collection.insertMany(mov);
+        console.info(`${mov.length} Upcomingmovies were successfully stored.`);
+        mov.map(async (movie)=>{
+          await getMovie(movie.id).then(async (mov)=>{
+            await detailModel.collection.insertOne(mov,(err)=>{if(err) console.log(err);
+            })
+           }
+          )
+        })
+      })
     } catch (err) {
-      console.error(`failed to Load upcoming Data: ${err}`);
+      console.error(`failed to Load upcomingmovie Data: ${err}`);
     }
   }
 
+  export async function loadMovies() {
+    console.log('load seed data');
+    try {
+        getMovies().then(async mov => {
+        await movieModel.deleteMany();
+        await detailModel.deleteMany();
+        await movieModel.collection.insertMany(mov);
+        console.info(`${mov.length} Movies were successfully stored.`);
+        mov.map(async (movie)=>{
+          await getMovie(movie.id).then(async (mov)=>{
+            await detailModel.collection.insertOne(mov,(err)=>{if(err) console.log(err);
+            })
+           }
+          )
+        })
+      })
+    } catch (err) {
+      console.error(`failed to Load Movie Data: ${err}`);
+    }
+  }
+
+  export async function loadToprated() {
+    console.log('load Topratedmovies');
+    try {
+        getTopratedMovies().then(async mov => {
+        await topratedModel.deleteMany();
+        await detailModel.deleteMany();
+        await topratedModel.collection.insertMany(mov);
+        console.info(`${mov.length} Topratedmovies were successfully stored.`);
+        mov.map(async (movie)=>{
+          await getMovie(movie.id).then(async (mov)=>{
+            await detailModel.collection.insertOne(mov,(err)=>{if(err) console.log(err);
+            })
+           }
+          )
+        })
+      })
+    } catch (err) {
+      console.error(`failed to Load topratedmovie Data: ${err}`);
+    }
+  }
 

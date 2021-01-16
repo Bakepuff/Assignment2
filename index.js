@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import moviesRouter from './api/movies';
+import movieRouter from './api/movie';
 import bodyParser from 'body-parser';
 import './db';  
 import usersRouter from './api/users';
@@ -55,7 +56,7 @@ app.use('/api/genres', genresRouter);
 app.use('/api/toprated', topratedRouter);
 app.use('/api/upcoming', upcomingRouter);
 app.use('/api/actor', actorsRouter);
-
+app.use('/api/movie', movieRouter);
 app.use(
   "/",
   swaggerUi.serve,

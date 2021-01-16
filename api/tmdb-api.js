@@ -28,3 +28,18 @@ export const getMovies = () => {
       .then(res => res.json())
       .then(json => json.results);
   };
+  export const getUpcomingMovies = () => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_KEY}`
+    )
+      .then(res => res.json())
+      .then(json => json.results);
+  };
+
+  export const getTopratedMovies = () => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_KEY}`
+    )
+      .then(res => res.json())
+      .then(json => json.results);
+  };
