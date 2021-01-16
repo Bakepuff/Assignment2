@@ -3,19 +3,32 @@ import mongoose from 'mongoose';
 import app from '../index';
 
 const baseUrl = '/api/upcoming';
+const movieId = 529203;
+const wrongId = 999999;
 
-describe('Movie api get request testing', () => {
-    it('should get genres list', async (done) => {
-      await request(app)
-        .get(baseUrl)
-        .expect(200)
-        .then((res) => {
-          expect(res.body.length).toBeGreaterThan(0);
-        });
-      done();
-    });
-    afterAll(async () => {
-      await mongoose.disconnect();
-      await app.close();
-    });
+
+describe('GET', () => {
+  it('should get specfied movie when the id is valid ', async (done) => {
+    await request(app)
+      .get(`${baseUrl}/${movieId}`)
+      .expect(200)
+    done()
+  })
+})
+
+describe('Movie api put request testing', () => {
+  it('should catch error with unexisited movie id', async (done) => {
+    await request(app)
+      .put(`${baseUrl}/${wrongId}`)
+      .send({movieId})
+      .expect(404)
+    done()
+  })
+
+  afterAll(async () => {
+    await mongoose.disconnect();
+    await app.close();
+  });
 });
+
+

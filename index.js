@@ -51,11 +51,11 @@ app.use(passport.initialize());
 // Add passport.authenticate(..)  to middleware stack for protected routes​
 
 app.use('/api/movies', passport.authenticate('jwt', {session: false}), moviesRouter);
+app.use('/api/toprated' , passport.authenticate('jwt', {session: false}), topratedRouter);
+app.use('/api/actor', passport.authenticate('jwt', {session: false}), actorsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/genres', genresRouter);
-app.use('/api/toprated', topratedRouter);
 app.use('/api/upcoming', upcomingRouter);
-app.use('/api/actor', actorsRouter);
 app.use('/api/movie', movieRouter);
 app.use(
   "/",

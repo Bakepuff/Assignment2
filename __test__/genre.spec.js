@@ -4,7 +4,7 @@ import app from '../index'
 
 const baseUrl = '/api/genres'
 
-describe('Movie api get request testing', () => {
+describe('GET', () => {
     it('should get genres list', async (done) => {
       await request(app)
         .get(baseUrl)

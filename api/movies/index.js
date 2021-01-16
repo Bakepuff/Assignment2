@@ -1,5 +1,5 @@
 import express from 'express';
-import { getMovieReviews} from '../tmdb-api';
+import { getMovieReviews,getCreditDetail,getSimilarMovies,getMovieCredits} from '../tmdb-api';
 import movieModel from './movieModel'
 
 const router = express.Router();
@@ -19,6 +19,30 @@ router.get('/:id/reviews', (req, res, next) => {
   .then(reviews => res.status(200).send(reviews))
   .catch((error) => next(error));
 });
+
+router.get('/:id/similar', (req, res, next) => {
+  const id = parseInt(req.params.id);
+  getSimilarMovies(id)
+  .then(similarMovies => res.status(200).send(similarMovies))
+  .catch((error)=> next(error));
+});
+
+router.get('/:id/credit', (req, res, next) => {
+  const id = parseInt(req.params.id);
+  getMovieCredits(id)
+  .then(similarMovies => res.status(200).send(similarMovies))
+  .catch((error)=> next(error));
+});
+
+router.get('/:id/creditDetail', (req, res, next) => {
+  const id = parseInt(req.params.id);
+  getCreditDetail(id)
+  .then(similarMovies => res.status(200).send(similarMovies))
+  .catch((error)=> next(error));
+});
+
+
+
 
 
 export default router;
