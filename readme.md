@@ -64,9 +64,7 @@ Give an overview of your web API design, perhaps similar to the following:
 | /api/actors/{actorid}| Get details of one actor | N/A | N/A | N/A
 
 
-If you have your API design on an online platform or graphic, please link to it (e.g. [Swaggerhub](https://app.swaggerhub.com/)).
 
-Swagger link:https://moviesapi-staging.herokuapp.com/
 
 ## Security and Authentication
 Give details of authentication/ security implemented on the API(e.g. passport/sessions). Indicate which routes are protected.
