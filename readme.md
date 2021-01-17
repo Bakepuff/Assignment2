@@ -4,7 +4,7 @@ Name: TanShi
 
 ## Features.
 
-...... A bullet-point list of the ADDITIONAL features you have implemented in the API **THAT WERE NOT IN THE LABS** ......,
+A bullet-point list of the ADDITIONAL features you have implemented in the API **THAT WERE NOT IN THE LABS** ,
  
  + Feature 1 - More than 2 new API routes, including a parameterised URL
  + Feature 2 - Integrate with MongoDB Atlas Database
@@ -17,7 +17,7 @@ Name: TanShi
  
 ## Installation Requirements
 
-Describe what needs to be on the machine to run the API (Node v?, NPM, MongoDB instance, any other 3rd party software not in the package.json). 
+Describe what needs to be on the machine to run the API . 
 
 Describe getting/installing the software, perhaps:
 
@@ -46,18 +46,18 @@ Give an overview of your web API design, perhaps similar to the following:
 
 |  |  GET | POST | PUT | DELETE
 | -- | -- | -- | -- | -- 
-| /api/movies |Gets a list of movies | N/A | N/A |
+| /api/movies |Gets a list of movies | N/A | N/A | N/A
 | /api/movies/{movieid} | Get a Movie | N/A | N/A | N/A
 | /api/movies/{movieid}/reviews | Get all reviews for movie | Create a new review for Movie | N/A | N/A  
 | /api/movies/{movieid}/similar| Get similar movie for a movie | N/A | N/A | N/A
 | /api/movies/{movieid}/credit| Get credits list for a movie | N/A | N/A | N/A
 | /api/movies/{movieid}/creditDetail| Get credit detail for a movie | N/A | N/A | N/A
 | /api/toprated| Gets a list of toprated movies | N/A | N/A | N/A
-| /api/toprated/{topratedid}| Gets a toprated movie | N/A | update an toprated movie | delete an toprated movie
+| /api/toprated/{topratedid}| Gets a toprated movie | N/A | Update an toprated movie | Delete an toprated movie
 | /api/upcoming| Gets a list of upcoming movies | N/A | N/A | N/A
-| /api/upcoming/{upcomingid}| Gets an upcoming movie | N/A | update an upcoming movie | delete an upcoming movie
+| /api/upcoming/{upcomingid}| Gets an upcoming movie | N/A | Update an upcoming movie | Delete an upcoming movie
 | /api/user| Gets a list of user | N/A | N/A | N/A
-| /api/users/{userid}| N/A | N/A | update a user | N/A
+| /api/users/{userid}|Get a user information | N/A | Update a user | N/A
 | /api/users/{username}/favourites| Get Movie Favourites | Add a movie to favourites | N/A | N/A
 | /api/toprated| Gets a list of toprated movies | N/A | N/A | N/A
 | /api/actors| Get a list of actors | N/A | N/A | N/A
@@ -66,7 +66,7 @@ Give an overview of your web API design, perhaps similar to the following:
 
 If you have your API design on an online platform or graphic, please link to it (e.g. [Swaggerhub](https://app.swaggerhub.com/)).
 
-[swagger link]:https://moviesapi-staging.herokuapp.com/
+Swagger link:https://moviesapi-staging.herokuapp.com/
 
 ## Security and Authentication
 Give details of authentication/ security implemented on the API(e.g. passport/sessions). Indicate which routes are protected.
@@ -121,7 +121,7 @@ Protected routes:
 +  /api/movies/{movieid}/similar  Get
 +  /api/movies/{movieid}/credit   Get
 +  /api/movies/{movieid}/creditDetails Get
-+  /api/movies/{movieid}/reviews Get Post
++  /api/movies/{movieid}/reviews Get & Post
 +  /api/actor     Get
 +  /api/actor/{actorid}    GET
 
