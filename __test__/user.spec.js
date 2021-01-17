@@ -3,18 +3,15 @@ import mongoose from 'mongoose'
 import app from '../index'
 
 const baseUrl = '/api/users'
-const movieId = 999999
-
+const wrongId = 999999
 const user1 = {
   'username': 'user1',
   'password': 'test1',
 }
-
 const user2 = {
   'username': 'TanShi',
   'password': 'TanShi123456'
 }
-
 const user3 = {
   'username': 'TanShi',
   'password': 'TanShi',
@@ -24,11 +21,10 @@ describe('POST', () => {
   it('should time out 500 with unexisited movie id', async (done) => {
     await request(app)
       .post(`${baseUrl}/${user1.username}/favourites`)
-      .send({id:movieId})
+      .send({id:wrongId})
       .expect(500)
     done()
   })
-
   it('should return 201 when register a new user', async(done) => {
     await request(app)
     .post(`${baseUrl}?action=register`)
@@ -39,7 +35,6 @@ describe('POST', () => {
     })
   done()
   })
-
   it('should fail when the password not comply with the rules', async(done) => {
     await request(app)
     .post(`${baseUrl}?action=register`)
@@ -50,31 +45,33 @@ describe('POST', () => {
     })
   done()
   })
-
 })
 
 
 describe('GET', () => {
-
   it('should get the user list', async (done) => {
     await request(app)
       .get(baseUrl)
+      .set("Accept", "application/json")
       .expect('Content-Type', /json/)
       .expect(200)
       .then((res) => {
+        expect(res.body.length).toBe(3)
         expect(res.body.length).toBeGreaterThan(0)
       })
     done()
   })
-
   it('should get the favourite lists', async (done) => {
     await request(app)
       .get(`${baseUrl}/${user1.username}/favourites`)
+      .set("Accept", "application/json")
       .expect('Content-Type', /json/)
       .expect(201)
+      .then((res) => {
+        expect(res.body.length).toBe(0)
+      })
     done()
   })
-  
   afterAll(async () => {
     await mongoose.disconnect()
     await app.close()

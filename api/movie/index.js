@@ -15,7 +15,7 @@ router.get('/:id', async (req, res, next) => {
   if(movie){
     detailModel.findByMovieDBId(id).then(movie => res.status(200).send(movie)).catch(next);
   }else{
-    res.status(404).send({message: `Unable to find movie with id: ${id}.`, status: 404});
+    res.status(404).send("NOT FOUND");
   }
   
   

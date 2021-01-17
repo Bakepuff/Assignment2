@@ -20,7 +20,7 @@ router.put('/:id', async (req, res, next)=>{
     upcomingModel.findByMovieDBId(id).then(upcoming =>res.status(200).send(upcoming))
   .catch(next);
   }else{
-    res.status(404).send({message: `Can't find movie: ${id}.`, status: 404});
+    res.status(404).send("NOT FOUND");
   }
 });
 
@@ -31,7 +31,7 @@ router.delete('/:id', async (req,res, next)=>{
      upcomingModel.deleteOne({id: id}).then(res.status(200).send("delete successfully"))
     .catch(next);
     } else{
-      res.status(404).send({message: `Can't find movie: ${id}.`, status: 404});
+      res.status(404).send("NOT FOUND");
     }
   });
   
