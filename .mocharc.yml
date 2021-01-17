@@ -1,6 +1,8 @@
 file:
     - '_test_/movie.spec.js'
     - '_test_/user.spec.js'
+    - '_test_/genre.spec.js'
+    - '_test_/upcoming.spec.js'
 require: '@babel/register'
 exit: true
 

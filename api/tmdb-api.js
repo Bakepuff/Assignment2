@@ -23,8 +23,47 @@ export const getMovies = () => {
 
   export const getMovieReviews = id => {
     return fetch(
-      `https://api.themovied.org/3/movie/${id}/reviews?api_key=${process.env.TMDB_KEY}`
+      `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.TMDB_KEY}`
     )
       .then(res => res.json())
       .then(json => json.results);
+  };
+  export const getUpcomingMovies = () => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.TMDB_KEY}`
+    )
+      .then(res => res.json())
+      .then(json => json.results);
+  };
+
+  export const getTopratedMovies = () => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.TMDB_KEY}`
+    )
+      .then(res => res.json())
+      .then(json => json.results);
+  };
+
+  export const getMovieCredits = id => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.TMDB_KEY}&language=en-US`
+    )
+      .then(res => res.json())
+      .then(json => json.cast);
+  };
+  
+  export const getCreditDetail = (creditId) => {
+    return fetch(
+      `https://api.themoviedb.org/3/credit/${id}?api_key=${process.env.TMDB_KEY}`
+    )
+    .then(res => res.json())
+    .then(json => json.results);
+};
+  
+  export const getSimilarMovies = (movieId) => {
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.TMDB_KEY}`
+    )
+      .then(res => res.json())
+      .then(json => json.results || [])
   };

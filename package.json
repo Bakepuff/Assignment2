@@ -9,15 +9,23 @@
     "compile:moviemodels": "babel ./api/movies --out-dir build/api/movies",
     "compile:usermodels": "babel ./api/users --out-dir build/api/users",
     "compile:genremodels": "babel ./api/genres --out-dir build/api/genres",
+    "compile:actormodels": "babel ./api/actors --out-dir build/api/actors",
+    "compile:topratedmodels": "babel ./api/toprated --out-dir build/api/toprated",
+    "compile:upcomingmodels": "babel ./api/upcoming --out-dir build/api/upcoming",
     "compile:tmdb-api": "babel ./api/tmdb-api.js --out-dir build/api/",
-    "compile:models": "npm-run-all compile:moviemodels compile:usermodels compile:genremodels compile:tmdb-api",
+    "compile:models": "npm-run-all compile:moviemodels compile:usermodels compile:genremodels compile:tmdb-api compile:actormodels compile:topratedmodels compile:upcomingmodels",
     "compile:seed": "babel ./seedData --out-dir build/seedData",
     "compile:auth": "babel ./authenticate --out-dir build/authenticate",
     "compile:routes": "babel ./routes --out-dir build/routes ",
     "compile:app": "babel index.js --out-dir build/",
+    "compile:ser": "babel server.js --out-dir build/",
     "compile:db": "babel db.js --out-dir build/",
     "compile:aut": "babel authenticate.js --out-dir build/",
+<<<<<<< HEAD
     "compile:all": "npm-run-all compile:models compile:seed compile:app compile:db compile:auth compile:aut",
+=======
+    "compile:all": "npm-run-all compile:models compile:seed compile:app compile:db compile:auth compile:aut compile:ser",
+>>>>>>> develop
     "postinstall": "rimraf ./build && npm run compile:all",
     "start": "nodemon --exec babel-node server.js",
     "test": "jest --forceExit --maxWorkers=1"
@@ -32,6 +40,7 @@
     "@babel/preset-env": "^7.12.11",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
+    "babel-plugin-inline-json-import": "^0.3.2",
     "babel-preset-env": "^1.7.0",
     "eslint": "^7.16.0",
     "jest": "^26.6.3",
@@ -49,7 +58,9 @@
     "mongoose": "^5.11.9",
     "node-fetch": "^2.6.1",
     "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "swagger-jsdoc": "^6.0.1",
+    "swagger-ui-express": "^4.1.6"
   },
   "jest": {
     "testEnvironment": "node"
