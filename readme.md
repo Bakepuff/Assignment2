@@ -6,33 +6,20 @@ Name: TanShi
 
 ...... A bullet-point list of the ADDITIONAL features you have implemented in the API **THAT WERE NOT IN THE LABS** ......,
  
- + Feature 1 - Users can get a list of actors
- + Feature 2 - Users can get actor information based on actor ID
- + Feature 3 - Users can get upcoming movies list 
- + Feature 4 - Users can get upcoming movies based on ID
- + Feature 5 - Users can get top-rated movies
- + Feature 6 - Users can get top rated movies based on ID
- + Feature 7 - Users can get the detailed information of the movie according to the id of the movie
- + Feature 8 - Users can get movie reviews based on movie id
- + Feature 9 - Users can get similar movies based on movie id
- + Feature 10 - Users can get credits based on movie id
- + Feature 11 - Users can get credits details according to the id of the movie
- + Feature 12 - Users can put upcoming movies
- + Feature 13 - Users can delete upcoming movies
- + Feature 14 - Users can put toprated movies
- + Feature 15 - Users can delete toprated movies
-
+ + Feature 1 - More than 2 new API routes, including a parameterised URL
+ + Feature 2 - Integrate with MongoDB Atlas Database
+ + Feature 3 - Minimal React integration(GET and POST data to API)
+ + Feature 4 - Nested Document and/or object referencing in Mongo/Mongoose.
+ + Feature 5 - Custom validation using Mongoose.
+ + Feature 6 - Basic Authentication and protected routes.
+ + Feature 7 - Good use of express middleware (e.g. Error handling).
+ + Feature 8 - API documentation - Swagger
+ 
 ## Installation Requirements
 
 Describe what needs to be on the machine to run the API (Node v?, NPM, MongoDB instance, any other 3rd party software not in the package.json). 
 
 Describe getting/installing the software, perhaps:
-
-```bat
-git clone http:\myrepo.git
-```
-
-followed by installation
 
 ```bat
 git install
@@ -50,7 +37,7 @@ HOST=localhost
 TMDB_KEY=MYTMDBKEY
 mongoDB=mongodb+srv://TanShi:<password>@cluster0.mfjv3.mongodb.net/<dbname>?retryWrites=true&w=majority
 SEED_DB=false
-SECRET=ilikecake
+SECRET=<JWTtoken>
 ```
 
 
@@ -128,9 +115,9 @@ export default async (req, res, next) => {
 
 Protected routes:
 +  /api/toprated  Get
-+  /api/toprated/  Put
++  /api/toprated  Put
 +  /api/toprated  Delete
-+  /api/movies/{movieid} Get
++  /api/movies/{movieid}  Get
 +  /api/movies/{movieid}/similar  Get
 +  /api/movies/{movieid}/credit   Get
 +  /api/movies/{movieid}/creditDetails Get
@@ -154,13 +141,34 @@ export const getMovies = () => {
 
 ~~~
 
+React App repo: https://github.com/Bakepuff/wad2-moviesApp
+
 ## Extra features
 
 . . Briefly explain any non-standard features, functional or non-functional, developed for the app.  
-
++ customized password validation. 
+The password set during user registration must have letters and numbers and more than five digits.
+~~~Javascript
+ if (req.query.action === 'register') {
+      const judge = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
+        if(judge.test(req.body.password)){
+        await User.create(req.body).catch(next);
+        res.status(201).json({
+          code: 201,
+          msg: 'Successful created new user.',
+        });
+~~~
 ## Independent learning.
 
 . . State the non-standard aspects of React/Express/Node (or other related technologies) that you researched and applied in this assignment . .  
++ Swagger UI
+I learnt swagger API Document, and deploy on Heroku.
+~~~Javascript
+"swagger-jsdoc": "^6.0.1",
+    "swagger-ui-express": "^4.1.6"
+~~~
+![][swagger]
+![][productionapp]
 
 # Assignment 2 - Agile Software Practice.
 
@@ -215,3 +223,4 @@ Name: TanShi
 
 [stagingapp]: ./img/stagingapp.png
 [productionapp]: ./img/productionapp.png
+[swagger]: ./img/swagger.png
