@@ -29,12 +29,6 @@ Describe what needs to be on the machine to run the API (Node v?, NPM, MongoDB i
 Describe getting/installing the software, perhaps:
 
 ```bat
-git clone http:\myrepo.git
-```
-
-followed by installation
-
-```bat
 git install
 npm install --save-dev babel-plugin-inline-json-import
 ```
@@ -157,6 +151,7 @@ export const getMovies = () => {
 ## Extra features
 
 . . Briefly explain any non-standard features, functional or non-functional, developed for the app.  
+
 
 ## Independent learning.
 
