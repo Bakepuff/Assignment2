@@ -21,10 +21,8 @@ stages:
   - build
   - test
   - staging
-<<<<<<< HEAD
-=======
   - deploy
->>>>>>> develop
+
 
 # Jobs:
 

@@ -21,11 +21,8 @@
     "compile:ser": "babel server.js --out-dir build/",
     "compile:db": "babel db.js --out-dir build/",
     "compile:aut": "babel authenticate.js --out-dir build/",
-<<<<<<< HEAD
-    "compile:all": "npm-run-all compile:models compile:seed compile:app compile:db compile:auth compile:aut",
-=======
     "compile:all": "npm-run-all compile:models compile:seed compile:app compile:db compile:auth compile:aut compile:ser",
->>>>>>> develop
+
     "postinstall": "rimraf ./build && npm run compile:all",
     "start": "nodemon --exec babel-node server.js",
     "test": "jest --forceExit --maxWorkers=1"
