@@ -43,7 +43,7 @@ describe("Delete",()=>{
             .expect(200)
             .expect('delete successfully');
         });
-  it("should return 200 and delete successfully",()=>{
+  it("should not return not found and delete failed",()=>{
           return request(app)
             .delete(`${baseUrl}/${wrongId}`)
             .set("Accept", "application/json")
